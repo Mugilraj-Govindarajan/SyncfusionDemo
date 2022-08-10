@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Schedule Component</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Typescript UI Controls" />
+    <meta name="author" content="Syncfusion" />
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-base/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-buttons/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-calendars/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-dropdowns/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-inputs/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-splitbuttons/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-lists/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-popups/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/ej2-navigations/styles/material.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="styles/material.css" />
+    
+    <!-- <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-data/dist/global/ej2-data.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-inputs/dist/global/ej2-inputs.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-buttons/dist/global/ej2-buttons.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-dropdowns/dist/global/ej2-dropdowns.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-compression/dist/global/ej2-compression.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-file-utils/dist/global/ej2-file-utils.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-splitbuttons/dist/global/ej2-splitbuttons.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-lists/dist/global/ej2-lists.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-popups/dist/global/ej2-popups.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-navigations/dist/global/ej2-navigations.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-calendars/dist/global/ej2-calendars.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-excel-export/dist/global/ej2-excel-export.min.js" type="text/javascript"></script>
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/ej2-schedule/dist/global/ej2-schedule.min.js" type="text/javascript"></script> -->
+    
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/dist/ej2.min.js" type="text/javascript"></script>
+    <script src="scripts/ej2-schedule.min.js"></script>
+
+    <style type="text/css">
+        .prop-grid .row {
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="schedule"></div>
+            </div>
+        </div>
+    </div>
+<script>
+    var ownerData = generateResourceData(1, 300, 'Resource');
+    var eventData = generateStaticEvents(new Date(2018, 4, 1), 300, 12);
+    var scheduleOptions = {
+        width: '750px',
+        height: '550px',
+        selectedDate: new Date(2018, 4, 1),
+        currentView: 'TimelineMonth',
+        group: {
+            resources: ['Owners']
+        },
+        resources: [
+            {
+                field: 'OwnerId', title: 'Owner',
+                name: 'Owners', allowMultiple: true,
+                dataSource: ownerData,
+                textField: 'Text', idField: 'Id', colorField: 'Color'
+            }
+        ],
+        views: [
+            { option: 'Day' },
+            { option: 'Week', allowVirtualScrolling: true },
+            { option: 'Month', allowVirtualScrolling: true },
+            { option: 'TimelineDay' },
+            { option: 'TimelineWeek', allowVirtualScrolling: true },
+            { option: 'TimelineMonth', allowVirtualScrolling: true },
+            { option: 'TimelineYear', displayName: 'Vertical Year', orientation: 'Vertical', allowVirtualScrolling: true }
+        ],
+        eventSettings: {
+            dataSource: eventData
+        }
+    };
+    var scheduleObj = new ej.schedule.Schedule(scheduleOptions, document.getElementById('schedule'));
+
+    function generateStaticEvents(start, resCount, overlapCount) {
+        var data = [];
+        var id = 1;
+        for (var i = 0; i < resCount; i++) {
+            var randomCollection = [];
+            var random = 0;
+            for (var j = 0; j < overlapCount; j++) {
+                random = Math.floor(Math.random() * (30));
+                random = (random === 0) ? 1 : random;
+                if (randomCollection.indexOf(random) !== -1 || randomCollection.indexOf(random + 2) !== -1 ||
+                    randomCollection.indexOf(random - 2) !== -1) {
+                    random += (Math.max.apply(null, randomCollection) + 10);
+                }
+                for (var k = 1; k <= 2; k++) {
+                    randomCollection.push(random + k);
+                }
+                var startDate = new Date(start.getFullYear(), start.getMonth(), random);
+                startDate = new Date(startDate.getTime() + (((random % 10) * 10) * (1000 * 60)));
+                var endDate = new Date(startDate.getTime() + ((1440 + 30) * (1000 * 60)));
+                data.push({
+                    Id: id,
+                    Subject: 'Event #' + id,
+                    StartTime: startDate,
+                    EndTime: endDate,
+                    IsAllDay: (id % 10) ? false : true,
+                    OwnerId: i + 1
+                });
+                id++;
+            }
+        }
+        return data;
+    }
+
+    function generateResourceData(startId, endId, text) {
+        var data = [];
+        var colors = [
+            '#ff8787', '#9775fa', '#748ffc', '#3bc9db', '#69db7c',
+            '#fdd835', '#748ffc', '#9775fa', '#df5286', '#7fa900',
+            '#fec200', '#5978ee', '#00bdae', '#ea80fc'
+        ];
+        for (var a = startId; a <= endId; a++) {
+            var n = Math.floor(Math.random() * colors.length);
+            data.push({
+                Id: a,
+                Text: text + ' ' + a,
+                Color: colors[n]
+            });
+        }
+        return data;
+    }
+</script>
+</body>
+
+</html>
