@@ -25,76 +25,280 @@
         </div>
     </div>
 <script>
-    var ownerData = generateResourceData(1, 300, 'Resource');
-    var eventData = generateStaticEvents(new Date(2018, 4, 1), 300, 12);
+    var eventData = [
+        {
+            Id: 1,
+            Subject: 'Paris',
+            StartTime: new Date(2017, 9, 29, 10, 0),
+            EndTime: new Date(2017, 9, 29, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 2,
+            Subject: 'Meeting - 1',
+            StartTime: new Date(2017, 9, 30, 10, 0),
+            EndTime: new Date(2017, 9, 30, 12, 30),
+            IsAllDay: false
+        }, {
+            Id: 3,
+            Subject: 'Meeting - 2',
+            StartTime: new Date(2017, 9, 30, 11, 0),
+            EndTime: new Date(2017, 9, 30, 14, 30),
+            IsAllDay: false
+        }, {
+            Id: 4,
+            StartTime: new Date(2017, 9, 31),
+            EndTime: new Date(2017, 10, 1),
+            IsAllDay: true
+        }, {
+            Id: 5,
+            Subject: 'Conference - 2',
+            StartTime: new Date(2017, 9, 31, 22, 0),
+            EndTime: new Date(2017, 10, 1, 0, 0),
+            IsAllDay: false
+        }, {
+            Id: 6,
+            Subject: 'Conference - 3',
+            StartTime: new Date(2017, 10, 1, 9, 30),
+            EndTime: new Date(2017, 10, 1, 11, 45),
+            IsAllDay: false
+        }, {
+            Id: 7,
+            Subject: 'Conference - 4',
+            StartTime: new Date(2017, 10, 1, 10, 30),
+            EndTime: new Date(2017, 10, 1, 12, 45),
+            IsAllDay: false
+        }, {
+            Id: 8,
+            Subject: 'Travelling',
+            StartTime: new Date(2017, 10, 1, 11, 30),
+            EndTime: new Date(2017, 10, 1, 13, 45),
+            IsAllDay: false
+        }, {
+            Id: 9,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 2, 10, 0),
+            EndTime: new Date(2017, 10, 2, 12, 30),
+            IsAllDay: false
+        }, {
+            Id: 10,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 2, 15, 30),
+            EndTime: new Date(2017, 10, 2, 18, 45),
+            IsAllDay: false
+        }, {
+            Id: 11,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 3, 10, 15),
+            EndTime: new Date(2017, 10, 3, 14, 45),
+            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=5',
+            IsAllDay: false
+        }, {
+            Id: 12,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 4, 9, 30),
+            EndTime: new Date(2017, 10, 5, 5, 45),
+            IsAllDay: false
+        }, {
+            Id: 13,
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 14,
+            Subject: 'Same Time',
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 15,
+            Subject: 'Same Time',
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 16,
+            Subject: 'Same Time',
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 17,
+            Subject: 'Same Time',
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 18,
+            Subject: 'Same Time',
+            StartTime: new Date(2017, 10, 5, 10, 0),
+            EndTime: new Date(2017, 10, 5, 11, 30),
+            IsAllDay: false
+        }, {
+            Id: 19,
+            Subject: 'Meeting - 1',
+            StartTime: new Date(2017, 10, 6),
+            EndTime: new Date(2017, 10, 7),
+            IsAllDay: true
+        }, {
+            Id: 20,
+            Subject: 'Meeting - 2',
+            StartTime: new Date(2017, 10, 6, 11, 0),
+            EndTime: new Date(2017, 10, 6, 14, 30),
+            IsAllDay: false
+        }, {
+            Id: 21,
+            Subject: 'Conference - 1',
+            StartTime: new Date(2017, 10, 7, 22, 0),
+            EndTime: new Date(2017, 10, 8, 20, 0),
+            IsAllDay: true
+        }, {
+            Id: 22,
+            Subject: 'Conference - 2',
+            StartTime: new Date(2017, 10, 7, 22, 0),
+            EndTime: new Date(2017, 10, 14, 23, 0),
+            IsAllDay: false
+        }, {
+            Id: 23,
+            Subject: 'Conference - 3',
+            StartTime: new Date(2017, 10, 8, 9, 30),
+            EndTime: new Date(2017, 10, 9, 11, 45),
+            IsAllDay: true
+        }, {
+            Id: 24,
+            Subject: 'Conference - 3 - A',
+            StartTime: new Date(2017, 10, 8, 9, 30),
+            EndTime: new Date(2017, 10, 8, 10, 0),
+            IsAllDay: true
+        }, {
+            Id: 25,
+            Subject: 'Conference - 3 - B',
+            StartTime: new Date(2017, 10, 8, 10, 0),
+            EndTime: new Date(2017, 10, 8, 10, 30),
+            IsAllDay: false
+        }, {
+            Id: 26,
+            Subject: 'Conference - 4',
+            StartTime: new Date(2017, 10, 8, 10, 30),
+            EndTime: new Date(2017, 10, 8, 12, 45),
+            IsAllDay: false
+        }, {
+            Id: 27,
+            Subject: 'Travelling',
+            StartTime: new Date(2017, 10, 8, 11, 30),
+            EndTime: new Date(2017, 10, 8, 13, 45),
+            IsAllDay: false
+        }, {
+            Id: 28,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 9, 10, 0),
+            EndTime: new Date(2017, 10, 9, 12, 30),
+            IsAllDay: false
+        }, {
+            Id: 29,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 9, 15, 30),
+            EndTime: new Date(2017, 10, 9, 18, 45),
+            IsAllDay: false
+        }, {
+            Id: 30,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 10, 10, 15),
+            EndTime: new Date(2017, 10, 10, 14, 45),
+            IsAllDay: false
+        }, {
+            Id: 31,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 11, 9, 30),
+            EndTime: new Date(2017, 10, 11, 10, 45),
+            IsAllDay: false
+        }, {
+            Id: 32,
+            Subject: 'Paris',
+            StartTime: new Date(2017, 10, 12, 10, 0),
+            EndTime: new Date(2017, 10, 12, 11, 30),
+            IsAllDay: true
+        }, {
+            Id: 33,
+            Subject: 'Meeting - 1',
+            StartTime: new Date(2017, 10, 13, 10, 0),
+            EndTime: new Date(2017, 10, 13, 12, 30),
+            IsAllDay: false
+        }, {
+            Id: 34,
+            Subject: 'Meeting - 2',
+            StartTime: new Date(2017, 10, 13, 11, 0),
+            EndTime: new Date(2017, 10, 13, 14, 30),
+            IsAllDay: false
+        }, {
+            Id: 35,
+            Subject: 'Conference - 1',
+            StartTime: new Date(2017, 10, 14, 22, 0),
+            EndTime: new Date(2017, 10, 15, 2, 30),
+            IsAllDay: false
+        }, {
+            Id: 36,
+            Subject: 'Conference - 2',
+            StartTime: new Date(2017, 10, 14, 22, 0),
+            EndTime: new Date(2017, 10, 15, 0, 0),
+            IsAllDay: false
+        }, {
+            Id: 37,
+            Subject: 'Conference - 3',
+            StartTime: new Date(2017, 10, 15, 9, 30),
+            EndTime: new Date(2017, 10, 15, 11, 45),
+            IsAllDay: false
+        }, {
+            Id: 38,
+            Subject: 'Conference - 4',
+            StartTime: new Date(2017, 10, 15, 10, 30),
+            EndTime: new Date(2017, 10, 15, 12, 45),
+            IsAllDay: false
+        }, {
+            Id: 39,
+            Subject: 'Travelling',
+            StartTime: new Date(2017, 10, 15, 11, 30),
+            EndTime: new Date(2017, 10, 15, 13, 45),
+            IsAllDay: false
+        }, {
+            Id: 40,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 16, 10, 0),
+            EndTime: new Date(2017, 10, 16, 12, 30),
+            IsAllDay: false
+        }, {
+            Id: 41,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 16, 15, 30),
+            EndTime: new Date(2017, 10, 16, 18, 45),
+            IsAllDay: false
+        }, {
+            Id: 42,
+            Subject: 'Vacation',
+            StartTime: new Date(2017, 10, 17, 10, 15),
+            EndTime: new Date(2017, 10, 17, 14, 45),
+            IsAllDay: false
+        }, {
+            Id: 43,
+            Subject: 'Conference',
+            StartTime: new Date(2017, 10, 18, 9, 30),
+            EndTime: new Date(2017, 10, 18, 10, 45),
+            IsAllDay: false
+        }
+    ];
     var scheduleOptions = {
-        width: '1200px',
-        height: '580px',
-        selectedDate: new Date(2018, 4, 1),
-        currentView: 'Month',
-        group: {
-            resources: ['Owners']
-        },
-        resources: [
-            {
-                field: 'OwnerId', title: 'Owner',
-                name: 'Owners', allowMultiple: true,
-                dataSource: ownerData,
-                textField: 'Text', idField: 'Id', colorField: 'Color'
-            }
-        ],
+        height: '550px',
+        selectedDate: new Date(2017, 10, 1),
+        currentView: 'Week',
         views: [
-            { option: 'WorkWeek', allowVirtualScrolling: true },
-            { option: 'Month', allowVirtualScrolling: true },
-            { option: 'TimelineWeek', allowVirtualScrolling: true },
-            { option: 'TimelineMonth', allowVirtualScrolling: true },
+            { option: 'Week' },
+            { option: 'WorkWeek' },
+            { option: 'Month' },
         ],
         eventSettings: {
             dataSource: eventData
         }
     };
     new ej.schedule.Schedule(scheduleOptions, document.getElementById('schedule'));
-
-    function generateStaticEvents(date, resCount, overlapCount) {
-        var data = [];
-        var index = 1;
-        var difference = 7200000;
-        for (var i = 0; i <= resCount; i++) {
-            var start = new Date(date.getFullYear(), date.getMonth(), 1);
-            var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-            for (var j = 0; j < overlapCount; j++) {
-                eventStart = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-                data.push({
-                    Id: index,
-                    Subject: "Event " + index,
-                    StartTime: eventStart,
-                    EndTime: new Date(eventStart.getTime() + difference),
-                    IsAllDay: (overlapCount % 5),
-                    OwnerId: i
-                });
-                index++;
-            }
-        }
-        return data;
-    }
-
-    function generateResourceData(startId, endId, text) {
-        var data = [];
-        var colors = [
-            '#ff8787', '#9775fa', '#748ffc', '#3bc9db', '#69db7c',
-            '#fdd835', '#748ffc', '#9775fa', '#df5286', '#7fa900',
-            '#fec200', '#5978ee', '#00bdae', '#ea80fc'
-        ];
-        for (var a = startId; a <= endId; a++) {
-            var n = Math.floor(Math.random() * colors.length);
-            data.push({
-                Id: a,
-                Text: text + ' ' + a,
-                Color: colors[n]
-            });
-        }
-        return data;
-    }
 </script>
 </body>
 
