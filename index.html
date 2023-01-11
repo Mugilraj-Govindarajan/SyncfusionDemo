@@ -20,11 +20,26 @@
 
 <body>
     <div class="container-fluid p-4">
-        <div class="row" style="margin-left: 15px; margin-top: 70px;">
+        <div id="interactions-log" style="font-size: 10px; height: 40px; overflow-y: scroll;">
+            <div id="interactions-log-helper"><span style="font-weight: bold;"></span><span></span></div>
+            <div id="interactions-log-start"><span style="font-weight: bold;"></span><span></span></div>
+            <div id="interactions-log-drag"><span style="font-weight: bold;"></span><span></span></div>
+        </div>
+        <button id="clear-log">Clear</button>
+        <div class="row" style="margin-left: 15px;">
             <div id="schedule"></div>
         </div>
     </div>
 <script>
+    window.onload = function() {
+        var ele = document.querySelector('.e-schedule-dialog').previousElementSibling;
+        if (ele.getAttribute('class') === null && ele.tagName === 'DIV') {
+            ele.remove();
+        }
+    }
+    document.getElementById('clear-log').onclick = function() {
+        document.getElementById('interactions-log').innerHTML = '';
+    }
     var eventData = [
         {
             Id: 1,
