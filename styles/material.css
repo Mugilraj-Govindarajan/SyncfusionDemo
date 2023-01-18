@@ -61,6 +61,7 @@
 
 .e-prevent-select {
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .e-warning {
