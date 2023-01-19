@@ -26505,7 +26505,7 @@ ejs-multiselect {
   vertical-align: top;
 }
 .e-schedule .e-table-container.e-translate {
-  transition: transform 0.3s ease 0s;
+  transition: transform 0.1s ease 0s;
 }
 .e-schedule .e-resource-tree-popup {
   background: #fff;
